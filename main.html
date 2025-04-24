@@ -11,6 +11,25 @@
       max-width: 400px;
       margin: auto;
     }
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
     #existing {
       display: none;
       margin-top: 10px;
@@ -22,12 +41,12 @@
   <h1>Login Form</h1>
 
   <form id="loginForm">
-    <input type="text" id="username" placeholder="Username" required /><br/><br/>
-    <input type="password" id="password" placeholder="Password" required /><br/><br/>
+    <input type="text" id="username" placeholder="Username" required /><br/>
+    <input type="password" id="password" placeholder="Password" required /><br/>
     <label>
       <input type="checkbox" id="checkbox" />
       Remember me.
-    </label><br/><br/>
+    </label><br/>
     <input type="submit" id="submit" value="Submit" />
   </form>
 
@@ -57,6 +76,12 @@
       const username = usernameInput.value.trim();
       const password = passwordInput.value.trim();
 
+      // Validate fields
+      if (!username || !password) {
+        alert("Please enter both username and password.");
+        return; // Stop the form submission
+      }
+
       alert(`Logged in as ${username}`);
 
       if (checkbox.checked) {
@@ -70,7 +95,6 @@
       }
     });
 
-    
     existingBtn.addEventListener('click', function () {
       const savedUsername = localStorage.getItem('username');
       if (savedUsername) {
